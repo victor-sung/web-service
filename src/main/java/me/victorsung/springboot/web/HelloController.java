@@ -1,7 +1,6 @@
 package me.victorsung.springboot.web;
 
 import me.victorsung.springboot.web.dto.HelloResponseDto;
-import org.springframework.boot.web.servlet.server.Session;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
