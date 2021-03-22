@@ -1,6 +1,6 @@
 # web-service
 
-## h2 Database "\nhttp://localhost:8080"에 접속하여 JDBC URL: 입력주소는 로그확인
+## h2 Database "http://localhost:8080"에 접속하여 JDBC URL: 입력주소는 로그확인
 ex)H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:9d53407e-b4ae-4db1-9420'
 
 ## JPA Auditing
