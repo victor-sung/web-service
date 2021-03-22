@@ -6,11 +6,11 @@ ex)
 ```java
 
 public void savePosts(){
-
+  ...
   posts.setCreateDate(new LocalDate);
   postsRepository.save(poasts);
-  
+  ...
 }
 
 ```
-이 문제르 해결하기 위해 JPA Auditing을 사용한다.
+이 문제를 해결하기 위해 JPA Auditing을 사용한다.
