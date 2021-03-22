@@ -24,5 +24,16 @@ public class BaseTimeEntity {
 
 ```
 
+```java
+
+@EnableJpaAuditing  //JPA Auditing 활성화
+@SpringBootApplication
+public class Application {
+    public static void main(String[] args) {
+        SpringApplication.run(Application.class, args);
+    }
+}
+
+```
 
 출처 : 이동욱, 스프링부트와 AWS로 혼자 구현하는 웹 서비스
