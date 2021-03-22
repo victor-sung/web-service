@@ -8,16 +8,20 @@ ex) H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:9d
 이 문제를 해결하기 위해 JPA Auditing을 사용한다.
 
 ```java
+
 @Getter
 @MappedSuperclass   //BaseTimeEntity을 상속할 경우 필드들도 컬럼으로 인식하도록 한다.
 @EntityListeners(AuditingEntityListener.class)  //Auditing기능을 포함시킨다.
 public class BaseTimeEntity {
+
     @CreatedDate    //Entity가 생성되어 저장될때 시간이 자동저장
     private LocalDate createDate;
 
     @LastModifiedDate   //Entity의 값을 변경할 때 시간이 자동저장
     private LocalDate modifieDate;
+    
 }
+
 ```
 
 
