@@ -26,7 +26,7 @@ public class BaseTimeEntity {
 
 ```java
 
-@EnableJpaAuditing  //JPA Auditing 활성화
+//@EnableJpaAuditing  //JPA Auditing 활성화 이게 선언되면 TEST CODE가 안돌아간다.
 @SpringBootApplication
 public class Application {
     public static void main(String[] args) {
