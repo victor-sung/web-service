@@ -5,14 +5,13 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Created by victorsung.
@@ -20,34 +19,56 @@ import static org.junit.jupiter.api.Assertions.*;
  * Time: 12:25 오전
  */
 @ExtendWith(SpringExtension.class)
-@SpringBootApplication
-class PostsRepositoryTest {
+@SpringBootTest
+public class PostsRepositoryTest {
 
     @Autowired
     PostsRepository postsRepository;
 
-    @AfterEach  //각 @Test 마다 선처리
+    @AfterEach
     public void cleanup() {
         postsRepository.deleteAll();
     }
 
     @Test
-    @DisplayName("test")
-    void 게시글저장_불러오기(){
-    	// given
+    public void 게시글저장_불러오기() {
+        //given
         String title = "테스트 게시글";
         String content = "테스트 본문";
 
         postsRepository.save(Posts.builder()
                 .title(title)
                 .content(content)
-                .author("test@naver.com")
+                .author("test@gmail.com")
                 .build());
-    	// when
+
+        //when
         List<Posts> postsList = postsRepository.findAll();
-        // then
+
+        //then
         Posts posts = postsList.get(0);
         assertThat(posts.getTitle()).isEqualTo(title);
         assertThat(posts.getContent()).isEqualTo(content);
+    }
+
+    @Test
+    public void BaseTimeEntity_등록() {
+        //given
+        LocalDateTime now = LocalDateTime.of(2021, 3, 22, 0, 0, 0);
+        postsRepository.save(Posts.builder()
+                .title("title")
+                .content("content")
+                .author("author")
+                .build());
+        //when
+        List<Posts> postsList = postsRepository.findAll();
+
+        //then
+        Posts posts = postsList.get(0);
+
+        System.out.println(">>>>>>>>> createDate=" + posts.getCreatedDate() + ", modifiedDate=" + posts.getModifiedDate());
+
+        assertThat(posts.getCreatedDate()).isAfter(now);
+        assertThat(posts.getModifiedDate()).isAfter(now);
     }
 }
